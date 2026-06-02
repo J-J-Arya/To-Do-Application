@@ -6,6 +6,7 @@ const cors = require("cors");
 require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
+const verifyToken = require("./middleware/authMiddleware");
 
 const app = express();
 
@@ -18,6 +19,15 @@ app.get("/", (req, res) => {
     res.json({
         message: "API Running Successfully"
     });
+});
+
+app.get("/profile", verifyToken, (req, res) => {
+
+    res.json({
+        message: "Protected route accessed",
+        user: req.user
+    });
+
 });
 
 const PORT = process.env.PORT || 5000;
