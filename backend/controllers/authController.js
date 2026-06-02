@@ -107,7 +107,7 @@ const loginUser = (req, res) => {
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "1d"
+                expiresIn: "7d"
             }
         );
 
@@ -119,7 +119,29 @@ const loginUser = (req, res) => {
 );
 };
 
+const getProfile = (req, res) => {
+
+    const userId = req.user.id;
+
+    db.query(
+        "SELECT id, username, email FROM users WHERE id = ?",
+        [userId],
+        (err, results) => {
+
+            if (err) {
+                return res.status(500).json({
+                    message: err.message
+                });
+            }
+
+            return res.status(200).json(results[0]);
+
+        }
+    );
+};
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getProfile
 };
