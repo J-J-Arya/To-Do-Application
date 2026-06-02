@@ -1,2 +1,14 @@
 # To-Do-Application
-To-Do List Application using Flutter and Node.js
+
+**Tech Stack**
+Frontend:
+  - Flutter
+  - Dart
+Backend:
+  - Node.js
+  - Express.js
+Database:
+  - MySQL
+Authentication
+  - JWT (JSON Web Token)
+  - bcrypt password hashing
